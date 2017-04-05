@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Language" content="zh-cn">
+		<meta http-equiv="Content-Type" content="text/html;charset=gb2312">
+		<link rel="stylesheet" type="text/css" href="..\public\stylesheets\chat_panel.css"/>
+		<script src="..\public\javascripts\jQuery.js"></script>
+		<script src="..\public\javascripts\SHA256.js"></script>
+		<script src="..\public\javascripts\socket.io.js"></script>
+		<script src="..\public\javascripts\chat_size.js"></script>
+		<script src="..\public\javascripts\client_API.js"></script>
+		<script src="..\public\javascripts\chat_event.js"></script>
+		<title>Megachat</title>
+	</head>
+	<body onload="setFontSize();chatInit()"
+	      onresize="setFontSize()">
+
+		<!--div id="chat_title">
+			Megachat Main Panel
+		</div-->
+		<div id="setting_panel_wrapper">
+			<div id="setting_panel">
+			</div>
+		</div>
+
+		<div id="left_part">
+			<div id="left_panel">
+				<div id="left_scroll">
+					<div id="left_column">
+						<div id="user_panel_verticle_wrapper">
+							<div id="user_panel">
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="right_part">
+			<div id="right_column">
+				<div id="dialog_box_title_verticle_wrapper">
+					<div id="dialog_box_title">
+
+					</div>
+				</div>
+				<div id="dialog_box_panel">
+					<div id="dialog_box_scroll">
+						<div id="dialog_box">
+						</div>
+						<div id="dialog_box_bottom"><br/></div>
+					</div>
+					<div id="add_member_button">
+						+
+					</div>
+					<div id="to_box_bottom">
+						&darr;
+					</div>
+					<div id="send_button">
+						&nbsp;Send&nbsp;
+					</div>
+				</div>
+				<div id="input_panel">
+					<textarea id="input_box"></textarea>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

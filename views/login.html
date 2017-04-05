@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Language" content="zh-cn">
+		<meta http-equiv="Content-Type" content="text/html;charset=gbk">
+		<link rel="stylesheet" type="text/css" href="..\public\stylesheets\login.css"/>
+		<script src="..\public\javascripts\jQuery.js"></script>
+		<script src="..\public\javascripts\SHA256.js"></script>
+		<script src="..\public\javascripts\login_size.js"></script>
+		<script src="..\public\javascripts\submit.js"></script>
+		<script src="..\public\javascripts\index_API.js"></script>
+		<title>Megachat::Login</title>
+	</head>
+	<body onload="setFontSize()"
+	      onresize="setFontSize()">
+
+		<div id="login_title">
+			Megachat
+		</div>
+
+		<div id="login_div" onclick="initColor()" onkeypress="keyPressed(event)">
+			<div id="input_area" class="nobreak">
+				<p id="username_text" class="nobreak">Username:</p>
+				<input type="text" id="username"><br>
+				<p id="password_text" class="nobreak">Password:</p>
+				<input type="password" id="password"><br>
+				<p id="confirm_password_text" class="nobreak">Confirm Password:</p>
+				<input type="password" id="confirm_password">
+			</div>
+			<div id="submit_button" onclick="submit(event)">
+				<p>&nbsp;>&nbsp;</p>
+			</div>
+		</div>
+
+		<div id="login_func">
+			<p id="register" class="nobreak" onclick="changeMode()">Register</p>
+		</div>
+	</body>
+</html>

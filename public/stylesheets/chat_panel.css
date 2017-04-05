@@ -1,0 +1,347 @@
+html, body{
+	font-size: 100%;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family:"Consolas","Microsoft YaHei","Hiragino Sans GB", serif;
+	cursor:default;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-khtml-user-select:none;
+	user-select:none;
+}
+
+body{
+	background-color:#c0c0c0;
+	background-repeat:no-repeat;
+	background-position:center;
+	background-attachment:fixed;
+	background-size:cover;
+	overflow: hidden;
+}
+
+::selection{background:#5b9bd5;color:#ffffff;}
+::-moz-selection{background:#5b9bd5;color:#ffffff;}
+::-webkit-selection{background:#5b9bd5;color:#ffffff;}
+
+#chat_title{
+	text-align: center;
+	transition: 1s;
+	margin-top: 5%;
+}
+
+#left_part{
+	float: left;
+	width: 24%;
+	height: 100%;
+	padding: 0 3% 0 3%;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+
+	overflow: hidden;
+}
+
+#username_box{
+	margin-bottom: 10px;
+}
+
+#setting_box{
+	font-size: 50%;
+	margin-bottom: 10px;
+}
+
+#right_part{
+	float: left;
+	width: 67%;
+	height: 100%;
+	padding: 0 3% 0 0;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	overflow: hidden;
+}
+
+#left_panel{
+	width: 100%;
+	height: 100%;
+	background-color:rgba(255,255,255,0.5);
+}
+
+#left_scroll{
+	position: inherit;
+	width: 200%;
+	height: 100%;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+
+#left_column{
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	/* background-color:rgba(255,255,255,0.5); */
+	position:inherit;
+	width:50%;
+	height: 100%;
+}
+
+#user_panel_verticle_wrapper{
+	display:table;
+	width: 100%;
+	height: 15%;
+	overflow: hidden;
+}
+
+#user_panel{
+	position: relative;
+	display:table-cell;
+	vertical-align: middle;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	background-color:rgba(255,255,255,0.5);
+	display: table-cell;
+	width: 100%;
+	/*height: 15%;*/
+	text-align: center;
+	font-size: 200%;
+	overflow: hidden;
+}
+
+.chatbox{
+	/*box-shadow : 0 0 0 1px #000000 inset;*/
+	position: relative;
+	width: 100%;
+	height: 10%;
+	overflow: hidden;
+	background-color:rgba(255,255,255,0.5);
+}
+
+.chatbox_title{
+	display: inline-block;
+	/*box-shadow : 0 0 0 1px #000000 inset;*/
+	position: absolute;
+
+	width: 80%;
+	height: 100%;
+	margin: 15px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.chatbox_unread{
+	display: inline-block;
+	position: absolute;
+	right:0;
+	width: 20%;
+	height: 100%;
+	font-size: 200%;
+	color: #d0d0d0;
+	text-align: center;
+	overflow: hidden;
+}
+
+.del_friend_box{
+	position: absolute;
+	margin-left: 4px;
+}
+
+#right_column{
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	background-color:rgba(255,255,255,0.5);
+	width: 100%;
+	height: 100%;
+}
+
+#dialog_box_title_verticle_wrapper{
+	position: relative;
+	display:table;
+	width: 100%;
+	height: 5%;
+	overflow: hidden;
+}
+
+#dialog_box_title{
+	position: relative;
+	display:table-cell;
+	vertical-align: middle;
+	background-color:rgba(255,255,255,0.5);
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+}
+
+#dialog_box_panel{
+	position: relative;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	width: 100%;
+	height: 75%;
+	overflow: hidden;
+	-moz-user-select:text;
+	-webkit-user-select:text;
+	-ms-user-select:text;
+	-khtml-user-select:text;
+	user-select:text;
+}
+
+#to_box_bottom{
+	position:absolute;
+	right:0.5em;
+	top:2.5em;
+	font-size: 200%;
+	color: #ffffff;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	background-color:rgba(0,0,0,0.25);
+	border-radius: 20em;
+	padding-top: 0.2em;
+	width:1.5em;
+	height:1.3em;
+	text-align: center;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-khtml-user-select:none;
+	user-select:none;
+}
+
+#send_button{
+	position:absolute;
+	right:0.5em;
+	bottom:0.5em;
+	font-size: 200%;
+	color: #ffffff;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	background-color:rgba(0,0,0,0.25);
+	padding: 5px;
+	border-radius: 20em;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-khtml-user-select:none;
+	user-select:none;
+}
+
+#add_member_button{
+	position:absolute;
+	right:0.5em;
+	top:0.5em;
+	font-size: 200%;
+	color: #ffffff;
+	/* box-shadow : 0 0 0 1px #000000 inset; */
+	background-color:rgba(0,0,0,0.25);
+	border-radius: 10em;
+	padding-top: 0.1em;
+	width:1.5em;
+	height:1.4em;
+	text-align: center;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	-khtml-user-select:none;
+	user-select:none;
+}
+
+#dialog_box_scroll{
+	position: inherit;
+	width: 200%;
+	height: 100%;
+	overflow-y:auto;
+	overflow-x:hidden;
+}
+
+#dialog_box{
+	position:inherit;
+	width:50%;
+	word-wrap:break-word;
+}
+
+.textpanel{
+	/*box-shadow : 0 0 0 1px #000000 inset;*/
+}
+
+.textbox{
+	vertical-align:top;
+	margin:0.25em 0em 0em 4em;
+}
+
+#input_panel{
+	width: 100%;
+	height: 20%;
+	background-color:rgba(255,255,255,0.5);
+	-moz-user-select:text;
+	-webkit-user-select:text;
+	-ms-user-select:text;
+	-khtml-user-select:text;
+	user-select:text;
+}
+
+#input_panel textarea{
+	font-family:"Consolas","Microsoft YaHei","Hiragino Sans GB", serif;
+	font-size: 150%;
+}
+
+#input_box{
+	background: transparent;
+	border: none;
+	outline: none;
+	width: 100%;
+	height: 100%;
+}
+
+#setting_panel_wrapper{
+	position: absolute;
+	z-index:100;
+	display: table;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color:rgba(0,0,0,0.5);
+}
+
+#setting_panel{
+	position: relative;
+	display:table-cell;
+	vertical-align: middle;
+	font-size: 200%;
+
+	width:auto;
+	height:auto;
+
+	text-align: center;
+	/*pointer-events: none;*/
+	/*display: inline-block;
+	display: none;*/
+	background-color: none;
+	color:#ffffff;
+}
+
+.option{
+	margin:50px;
+}
+
+#setting_panel input{
+	background:transparent;
+	font-family:"Consolas","Microsoft YaHei","Hiragino Sans GB", serif;
+	/*border:none;*/
+	border-width: thin;
+	border-style: none none solid none;
+	border-color: #ffffff;
+	color:#ffffff;
+	font-size: 100%;
+	outline: none;
+	transition: 1s;
+	text-overflow: ellipsis;
+}
+
+#setting_panel textarea{
+	background:transparent;
+	font-family:"Consolas","Microsoft YaHei","Hiragino Sans GB", serif;
+	border-width: thin;
+	border-style: solid none solid none;
+	border-color: #ffffff;
+	margin:20px;
+	resize: none;
+	width: 70%;
+	height: 20%;
+	color:#ffffff;
+	font-size: 60%;
+	outline: none;
+	transition: 1s;
+}
