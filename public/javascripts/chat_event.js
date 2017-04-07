@@ -364,7 +364,9 @@ function initFriendColumn(localInfoData){
 	}
 
 	for(i in localInfoData.chats){
+
 		localChats.push(new Chat(localInfoData.chats[i],null)); // temporarily no member
+
 		$("#chatbox"+(localChats.length-1)).remove();
 		insertChatbox(localChats.length-1,"Loading");
 		socket.emit("getGroup",localInfoData.chats[i]);
@@ -377,7 +379,9 @@ function initFriendColumn(localInfoData){
 		for(i in localChats){
 			if(localChats[i].id==gData.id){
 				//localChats[i]=new Chat(gData.id,gData.member);
+
 				var boxtitle = "";
+
 				// set the title for every group chat
 				localChats[i].member=gData.member;
 				var member=gData.member;
@@ -779,8 +783,8 @@ function sendActiveMessage(){
 	if(text=="")return;
 	//console.log("Message Sent!"+text);
 	$("#input_box").val("");
-	//$("#dialog_box").append(new DialogItem(localUser.username,text));
-	//scrollToDialogBottom();
+	$("#dialog_box").append(new DialogItem(localUser.username,text));
+	scrollToDialogBottom();
 	console.log(chat);
 	sendTextToChat(localUser.username, "", chat, text);
 }

@@ -317,13 +317,13 @@ function sendTextToChat(username, uid, target, msg){
 	if(target.id==null){
 		var pmsg={message:{text:msg,from:localUser.username,id:null},to:target.member[0]};
 		console.log("Friend Message Sending:");
-		console.log(pmsg);
+		console.log("pMessage",pmsg);
 		socket.emit("pMessage",pmsg);
 	}
 	else{
 		var pmsg={message:{text:msg,from:localUser.username,id:target.id},to:null};
 		console.log("Group Message Sending:");
-		console.log(pmsg);
+		console.log("gMessage",pmsg);
 		socket.emit("gMessage",pmsg);
 	}
 
