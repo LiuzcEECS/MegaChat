@@ -334,7 +334,7 @@ function sendTextToChat(username, uid, target, msg){
 function recoverMessages(msgs){
 	console.log(msgs);
 	for(i in msgs){
-		for(k in localChats){
+		/*for(k in localChats){
 			if(msgs[i].from==localChats[k].member[0]){
 				console.log("Find "+k);
 				localChats[k].messages.push(msgs[i]);
@@ -343,7 +343,8 @@ function recoverMessages(msgs){
 				targetChatboxUnread.text(parseInt(targetChatboxUnread.text())+1);
 				break;
 			}
-		}
+		}*/
+		onReceiveChat(msgs[i]);
 	}
 
 	socket.emit("clearMessage",null);
