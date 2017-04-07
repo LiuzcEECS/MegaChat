@@ -85,7 +85,7 @@ function settingInit(localInfoData){
 	$("#setting_panel_wrapper").hide();
 
 	$("<div></div>") // add username
-		.text(localUser?localUser.username + " (Menu)":"----") 
+		.text(localUser?localUser.username + " (Menu)":"----")
 		.attr("id","username_box")
 		.click(function(){
 			addUserOptions();
@@ -364,6 +364,9 @@ function initFriendColumn(localInfoData){
 	}
 
 	for(i in localInfoData.chats){
+		localChats.push(new Chat(localInfoData.chats[i],null)); // temporarily no member
+		$("#chatbox"+(localChats.length-1)).remove();
+		insertChatbox(localChats.length-1,"Loading");
 		socket.emit("getGroup",localInfoData.chats[i]);
 		console.log("GetGroupInfo Request id="+localInfoData.chats[i]+" Sent");
 	}
@@ -373,9 +376,23 @@ function initFriendColumn(localInfoData){
 		console.log(gData);
 		for(i in localChats){
 			if(localChats[i].id==gData.id){
-				localChats[i]=new Chat(gData.id,gData.member);
-				$("#chatbox"+i).remove();
-				insertChatbox(i,gData.chatname);
+				//localChats[i]=new Chat(gData.id,gData.member);
+				boxtitle = "";
+				// set the title for every group chat
+				localChats[i].member=gData.member;
+				var member=gData.member;
+				for(j in member)
+					if(member[j]!=localUser.username){
+						boxtitle+=member[j]+" ";
+					}
+				boxtitle=escapeHtml(boxtitle);
+
+				if(gData.chatname){
+					boxtitle=escapeHtml(gData.chatname)+"<br>"+boxtitle;
+				}
+
+				$("#chatbox"+i).children("div.chatbox_title").html(boxtitle);
+
 				return;
 			}
 		}
