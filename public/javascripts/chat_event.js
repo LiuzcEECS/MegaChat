@@ -368,20 +368,32 @@ function initFriendColumn(localInfoData){
 		console.log("GetGroupInfo Request id="+localInfoData.chats[i]+" Sent");
 	}
 
-	socket.on("groupInfo",function(gData){
-		console.log("gData Get:");
-		console.log(gData);
-		for(i in localChats){
-			if(localChats[i].id==gData.id){
-				localChats[i]=new Chat(gData.id,gData.member);
-				$("#chatbox"+i).remove();
-				insertChatbox(i,gData.chatname);
-				return;
-			}
-		}
-		localChats.push(new Chat(gData.id,gData.member));
-		insertChatbox(localChats.length-1,gData.chatname);
-	});
+	var promise = new Promise( function(resolve, reject){
+        var cnt = 0;
+        if(localInfoData.chats == null || localInfoData.chats.length == 0) resolve(cnt);
+        else{
+            socket.on("groupInfo", function(gData){
+                console.log("gData Get:");
+                console.log(gData);
+                for(i in localChats){
+                    if(localChats[i].id==gData.id){
+                        localChats[i]=new Chat(gData.id,gData.member);
+                        $("#chatbox"+i).remove();
+                        insertChatbox(i,gData.chatname);
+                        return;
+                    }
+                }
+                localChats.push(new Chat(gData.id,gData.member));
+                insertChatbox(localChats.length-1,gData.chatname);
+                cnt += 1;
+                if (cnt == localInfoData.chats.length) resolve(cnt);
+            });
+        }
+    });
+
+    promise.then(function(count){
+        recoverMessages(localInfoData.message);
+    });
 
 	//set listener
 	$("#input_box").keydown(function(event){
@@ -687,7 +699,6 @@ function getLocalInfo(callback){
 		localUser=new User(localInfoData.username);
 		callback(localInfoData);
 		setBG(localInfoData.background);
-		recoverMessages(localInfoData.message);
 		//recoverGroups(localInfoData.chats);
 		recoverFriendInvitation(localInfoData.request);
 	});
@@ -762,8 +773,8 @@ function sendActiveMessage(){
 	if(text=="")return;
 	//console.log("Message Sent!"+text);
 	$("#input_box").val("");
-	//$("#dialog_box").append(new DialogItem(localUser.username,text));
-	//scrollToDialogBottom();
+	$("#dialog_box").append(new DialogItem(localUser.username,text));
+	scrollToDialogBottom();
 	console.log(chat);
 	sendTextToChat(localUser.username, "", chat, text);
 }

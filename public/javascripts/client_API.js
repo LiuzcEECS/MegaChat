@@ -332,6 +332,7 @@ function sendTextToChat(username, uid, target, msg){
 }
 
 function recoverMessages(msgs){
+    console.log("Recover Messages");
 	console.log(msgs);
 	for(i in msgs){
 		/*for(k in localChats){
