@@ -181,10 +181,9 @@ io.on("connection", function(socket){
     socket.on('pMessage', function(data){
         data.message.from = socket.handshake.session.user.username;
         var callback = function(f_list, req, res){
+            console.log("pMessage " + data.message);
             if(f_list.indexOf(data.to)>-1){
                 if(data.to in list){
-                    console.log("send " + data.to);
-                    console.log(data.message);
                     list[data.to].socket.emit('message', data.message);
                 }
                 else{
@@ -205,6 +204,7 @@ io.on("connection", function(socket){
             f_list = JSON.parse(f_list);
             for(var i = 0,len = f_list.length;i<len;i++){
                 var f = f_list[i];
+                if(f == data.from) continue;
                 if(f in list){
                     list[f].socket.emit('message', data.message);
                 }

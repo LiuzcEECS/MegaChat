@@ -762,8 +762,8 @@ function sendActiveMessage(){
 	if(text=="")return;
 	//console.log("Message Sent!"+text);
 	$("#input_box").val("");
-	//$("#dialog_box").append(new DialogItem(localUser.username,text));
-	//scrollToDialogBottom();
+	$("#dialog_box").append(new DialogItem(localUser.username,text));
+	scrollToDialogBottom();
 	console.log(chat);
 	sendTextToChat(localUser.username, "", chat, text);
 }
