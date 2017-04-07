@@ -4,7 +4,7 @@ var localChats=new Array();
 var name_list=new Array();
 var activeChat=null; // activeChat is a chatbox !
 
-function ChatboxNoEvent(index,title){
+function ChatboxNoEvent(index,title, isGroup){
 	this.box=$("<div></div>").attr("id","chatbox"+index).addClass("chatbox").append(
 		$("<div></div>").addClass("chatbox_title").html(title)
 	).append(
@@ -34,10 +34,11 @@ function ChatboxNoEvent(index,title){
 	//this.unread=0;
 	this.title=title;
 	this.index=index;
+    this.isGroup = isGroup;
 }
 
-function Chatbox(index,title){
-	var chatbox=new ChatboxNoEvent(index,title);
+function Chatbox(index,title,isGroup){
+	var chatbox=new ChatboxNoEvent(index,title,isGroup);
 	chatbox.box.click(function(e){
 		//console.log(chatbox.index);
 		showDialogBox(chatbox);
@@ -57,16 +58,34 @@ function chatInit(){
 	//settingInit();
 }
 
+function hide_icons(){
+    $("#add_member_button").css("visibility","hidden");
+    $("#to_box_bottom").css("visibility","hidden");
+    $("#send_button").css("visibility","hidden");
+}
+
+function show_icons(is_show_add = true){
+    if(is_show_add){
+        $("#add_member_button").css("visibility","visible");
+    }
+    else{
+        $("#add_member_button").css("visibility","hidden");
+    }
+    $("#to_box_bottom").css("visibility","visible");
+    $("#send_button").css("visibility","visible");
+}
+
 function settingInit(localInfoData){
     var drop=document.getElementById("input_panel");
 	drop.addEventListener("drop",inDragHandle,false);
 
 	$("#user_panel").empty(); // in fact, you shall check the difference between new/old info and change the difference
 	$("#dialog_box_title").text("No Dialog Yet");
+    hide_icons();
 	$("#setting_panel_wrapper").hide();
 
 	$("<div></div>") // add username
-		.text(localUser?localUser.username:"----")
+		.text(localUser?localUser.username + " (Menu)":"----") 
 		.attr("id","username_box")
 		.click(function(){
 			addUserOptions();
@@ -310,6 +329,7 @@ function addPWOptions(){
 function insertChatbox(v,name_){
 	var boxtitle="";
 	var member=localChats[v].member;
+    var isGroup = (localChats[v].id != null);
 	for(j in member)
 		if(member[j]!=localUser.username){
 			boxtitle+=member[j]+" ";
@@ -323,7 +343,7 @@ function insertChatbox(v,name_){
 
 	console.log(boxtitle);
 
-	var chatbox=new Chatbox(v,boxtitle);
+	var chatbox=new Chatbox(v,boxtitle,isGroup);
 	//localChats[i].showName=chatbox.text();
 	$("#left_column").append(chatbox.box);
 }
@@ -379,7 +399,7 @@ function initFriendColumn(localInfoData){
 	$("#add_member_button").click(function(event){
 		$("#setting_panel").empty();
 		selectGroupMember();
-		console.log("Scroll to Bottom");
+		console.log("Select group member");
 	});
 
 	$("#to_box_bottom").click(function(event){
@@ -536,7 +556,10 @@ function addSetNewGroupOptions(){
 }
 
 function selectGroupMember(){
-	if(localChats[activeChat.index].id==null)return;
+    console.log("start")
+    console.log(activeChat)
+    console.log(localChats[activeChat.index].id)
+	if(!activeChat || localChats[activeChat.index].id==null)return;
 	console.log(name_list);
 	$("#setting_panel_wrapper").fadeIn();
 
@@ -706,6 +729,7 @@ function showDialogBox(chatbox){
 	}
 	activeChat=chatbox;
 	$("#dialog_box_title").html(chatbox.title);
+    show_icons(is_show_add = chatbox.isGroup)
 	$("#chatbox"+chatbox.index).children(".chatbox_unread").text(0);
 	activeChat.box.css("background-color","rgba(0,0,0,0.25)");
 	activeChat.box.css("color","#ffffff");
@@ -719,7 +743,7 @@ function showDialogBox(chatbox){
 		var text=texts[i].content;
 		$("#dialog_box").append(new DialogItem(author,text));
 	}*/
-	console.log(chat.messages);
+    //console.log(chat.messages);
 	for(i in chat.messages){
 		appendToDialogBox(chat.messages[i]);
 	}
