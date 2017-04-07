@@ -377,7 +377,7 @@ function initFriendColumn(localInfoData){
 		for(i in localChats){
 			if(localChats[i].id==gData.id){
 				//localChats[i]=new Chat(gData.id,gData.member);
-				boxtitle = "";
+				var boxtitle = "";
 				// set the title for every group chat
 				localChats[i].member=gData.member;
 				var member=gData.member;
